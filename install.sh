@@ -233,7 +233,7 @@ install_XrayR() {
     echo "正在尝试写入配置文件..."
     wget https://raw.githubusercontent.com/clearips/beefly/main/config.yml -O /etc/XrayR/config.yml
     sed -i "s/NodeID:.*/NodeID: ${node_id}/g" /etc/XrayR/config.yml
-    sed -i "s/http_or_https/${http_https}/g" /etc/XrayR/config.yml
+    sed -i "s/HTTP_OR_HTTPS/${http_https}/g" /etc/XrayR/config.yml
     sed -i "s/PANEL_URL/${v2board_web}/g" /etc/XrayR/config.yml
     sed -i "s/TOKEN/${v2board_api}/g" /etc/XrayR/config.yml
     sed -i "s/NodeType:.*/NodeType: ${node_type}/g" /etc/XrayR/config.yml
