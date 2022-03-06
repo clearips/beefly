@@ -166,12 +166,23 @@ install_XrayR() {
     echo ""
 
     # 设置前端面板地址
-    echo "设置对接面板地址"
+    echo "设置V2Board面板协议头(http|https 不用输入:// , example: http )"
+    echo ""
+    read -p "请输入V2Board前端协议头:" http_https
+    [ -z "${http_https}" ]
+    echo "---------------------------"
+    echo "您设置V2Board前端协议头为 ${http_https}"
+    echo "---------------------------"
+    echo "设置对接V2Board面板地址(不用输入http://|https:// , example: example.com)"
     echo ""
     read -p "请输入V2Board前端地址:" v2board_web
     [ -z "${v2board_web}" ]
     echo "---------------------------"
     echo "您设置的对接面板地址为 ${v2board_web}"
+    echo "---------------------------"
+    echo ""
+    echo "---------------------------"
+    echo "对接面板完整地址为 " ${http_https}://${v2board_web}
     echo "---------------------------"
     echo ""
 
@@ -222,6 +233,7 @@ install_XrayR() {
     echo "正在尝试写入配置文件..."
     wget https://raw.githubusercontent.com/clearips/beefly/main/config.yml -O /etc/XrayR/config.yml
     sed -i "s/NodeID:.*/NodeID: ${node_id}/g" /etc/XrayR/config.yml
+    sed -i "s/http_or_https/${http_https}/g" /etc/XrayR/config.yml
     sed -i "s/PANEL_URL/${v2board_web}/g" /etc/XrayR/config.yml
     sed -i "s/TOKEN/${v2board_api}/g" /etc/XrayR/config.yml
     sed -i "s/NodeType:.*/NodeType: ${node_type}/g" /etc/XrayR/config.yml
